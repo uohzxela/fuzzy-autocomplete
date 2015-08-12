@@ -1,6 +1,6 @@
 # fuzzy-autocomplete
 
-http://jsfiddle.net/80L48o4m/
+http://jsfiddle.net/wjs4ktqa/
 
 1. Load JQuery and fuzzy-autocomplete.js in header
 2. Define your input element: ```<input id='sample-input'>```
