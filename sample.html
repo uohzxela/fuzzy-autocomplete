@@ -4,11 +4,13 @@
 		<script src="https://rawgit.com/uohzxela/fuzzy-autocomplete/master/fuzzy-autocomplete.js"></script>
 	</head>
 	<body>
-
+		<label> Loaded with native array </label>
 		<input id="demo" style="width:250">
+		</br>
+		<label> Loaded with ajax </label>
+		<input id="demo2" style="width:250">
 		<script>
-			// Or you can load the json array using ajax 
-			var json = [
+			var arr = [
 			  "Amherst College",
 			  "Anhui Medical University",
 			  "Anhui University",
@@ -202,7 +204,9 @@
 			  "Loyola University Chicago",
 			  "Ludong University"
 			]
-			fuzzyAutocomplete($('#demo'), json);
+			fuzzyAutocomplete($('#demo'), arr);
+			// Or you can load the json array using ajax 
+			fuzzyAutocomplete($('#demo2'), 'https://rawgit.com/uohzxela/fuzzy-autocomplete/master/sample.json');
 		</script>
 	</body>
 </html>
