@@ -32,7 +32,12 @@ function fuzzyAutocomplete(input, data) {
     // Change input value upon keyup
     var changeInput = function(input, dataList) {
         var val = input.val();
-        var res = input.parent().find('.fuzzy-autocomplete-result');
+        var inputAncestor = input.parent();
+        var res = inputAncestor.find('.fuzzy-autocomplete-result');
+        while(res.length == 0) {
+          inputAncestor = inputAncestor.parent();
+          res = inputAncestor.find('.fuzzy-autocomplete-result');
+        }
         res.empty().hide();
         var autoCompleteResult = matchData(val, dataList);
         if (val == "" || autoCompleteResult.length == 0) {
@@ -58,7 +63,7 @@ function fuzzyAutocomplete(input, data) {
         });
         res.css({
             'left': input.position().left,
-            'width': input.width() + parseInt(input.css('padding-left'),10) + parseInt(input.css('border-left-width'),10),
+            'width': input.width() + parseFloat(input.css('padding-left'),10) + parseInt(input.css('border-left-width'),10) + 1,
             'position': 'absolute',
             'background-color': "white",
             'border': '1px solid #dddddd',
@@ -67,7 +72,7 @@ function fuzzyAutocomplete(input, data) {
             'overflow-x': 'hidden',
             'font-family': input.css('font-family'),
             'font-size' : input.css('font-size'),
-            'border-top' : 'none'
+            'z-index' : '10'
         }).insertAfter(input).show();
     };
     // Create a div for collecting the results, and a container for enclosing the input element and result div
