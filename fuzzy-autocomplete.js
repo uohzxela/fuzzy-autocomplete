@@ -78,7 +78,6 @@ function fuzzyAutocomplete(input, data) {
     // Create a div for collecting the results, and a container for enclosing the input element and result div
     var res = $("<div class='fuzzy-autocomplete-result' />");
     res.insertAfter(input);
-    input.next().andSelf().wrapAll("<div />");
     input.keyup(function() {
         changeInput(input, dataList);
     });
