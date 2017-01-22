@@ -1,4 +1,4 @@
-/* Written by Alex Jiao 
+/* Written by Alex Jiao
  * Usage: fuzzyAutocomplete($('#your-input-element'), ['data1', 'data2']);
  *        fuzzyAutocomplete($('#your-input-element'), '/javascripts/data.json');
  */
@@ -23,11 +23,21 @@ function fuzzyAutocomplete(input, data) {
     // Fuzzy matching with regex
     var matchData = function(input, dataList) {
         var reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
-        return dataList.filter(function(data) {
-            if (data.match(reg)) {
-                return data;
-            }
+        matches = $.grep(dataList, function(e, i){
+                if (e.id.match(reg)) {
+                    return true;
+                }
         });
+
+        if (matches.length > 0) {
+            // Build array of links
+            linkArray = [];
+
+            for (var i = matches.length - 1; i >= 0; i--) {
+                linkArray.push(matches[i].link);
+            }
+        }
+        return linkArray;
     };
     // Change input value upon keyup
     var changeInput = function(input, dataList) {
